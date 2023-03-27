@@ -10,7 +10,7 @@ intents = discord.Intents.default()
 intents.message_content = True
 client = discord.Client(intents=intents)
 
-TOKEN='XX'
+TOKEN=''
 
 @client.event
 async def on_message(message):
@@ -29,6 +29,9 @@ async def on_ready():
     print("Bot connected to the server!")
     channel = client.get_guild(998234966284582942).get_channel(998234966284582945)
     await channel.send("hey, guys!")
+
+    channelVoice = client.get_guild(998234966284582942).get_channel(998234966284582946)
+    await channelVoice.connect()
     # await myLoop.start()
 
 @tasks.loop(seconds = 10) # repeat after every 10 seconds
