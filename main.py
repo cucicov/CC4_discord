@@ -5,12 +5,16 @@ import time
 
 from dotenv import load_dotenv
 
-client = discord.Client(intents=discord.Intents.default())
+# intents = discord.Intents.all()
+intents = discord.Intents.default()
+intents.message_content = True
+client = discord.Client(intents=intents)
 
 TOKEN='XX'
 
 @client.event
 async def on_message(message):
+    print('message', message.content)
     if message.author == client.user:
         return
 
@@ -25,7 +29,7 @@ async def on_ready():
     print("Bot connected to the server!")
     channel = client.get_guild(998234966284582942).get_channel(998234966284582945)
     await channel.send("hey, guys!")
-    await myLoop.start()
+    # await myLoop.start()
 
 @tasks.loop(seconds = 10) # repeat after every 10 seconds
 async def myLoop():
