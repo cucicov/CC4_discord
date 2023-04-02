@@ -31,7 +31,12 @@ async def on_ready():
     await channel.send("hey, guys!")
 
     channelVoice = client.get_guild(998234966284582942).get_channel(998234966284582946)
-    await channelVoice.connect()
+    voice = await channelVoice.connect()
+    voice.play(discord.FFmpegPCMAudio("C:/Users/dorin/Downloads/sample.mp3"))
+    # while voice.is_playing():
+    #     time.sleep(.1)
+    # await voice.disconnect()
+
     # await myLoop.start()
 
 @tasks.loop(seconds = 10) # repeat after every 10 seconds
